@@ -2,6 +2,7 @@ package nhatdinh.bikespecialties;
 
 import nhatdinh.bikespecialties.db.repo.BrandRepository;
 import nhatdinh.bikespecialties.db.repo.CustomerRepository;
+import nhatdinh.bikespecialties.db.repo.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,10 +21,14 @@ public class BikeSpecialtiesApplication implements CommandLineRunner {
 	@Autowired
 	CustomerRepository customerRepository;
 
+	@Autowired
+	OrderItemRepository orderItemRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("=========Search by last name=============");
-		String lastName = "en";
-		customerRepository.searchForLastNameLike(lastName).forEach(System.out::println);
+		System.out.println("=========Search orderitem by orderId=============");
+		int orderId = 7;
+		orderItemRepository.findByOrder_Id(orderId).forEach(System.out::println);
+
 	}
 }
